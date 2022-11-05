@@ -1,0 +1,20 @@
+@use "colors" as *;
+
+.articles {
+    padding: 1rem;
+    
+    .article-container {
+        display: flex;
+				align-items: center;
+				padding: 6px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: $very-light-deep-purple;
+				}
+
+        p {
+            padding-left: 8px;
+        }
+    }
+}
