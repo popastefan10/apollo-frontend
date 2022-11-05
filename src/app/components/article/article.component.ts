@@ -13,7 +13,7 @@ export class ArticleComponent implements OnInit {
       {title: "Capitolul 2", content: ["Lorem ipsum sit dolor et", "Lorem ipsum sit dolor et", "Lorem ipsum sit dolor et"]},
       {title: "Capitolul 3", content: ["Lorem ipsum sit dolor et", "Lorem ipsum sit dolor et", "Lorem ipsum sit dolor et"]},
   ]
-  public article = MOCK_ARTICLES;
+  public article = MOCK_ARTICLES[0];
 
   constructor() { }
 

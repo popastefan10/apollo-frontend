@@ -1,6 +1,7 @@
 <div class="articles">
-    <div class="article-container" *ngFor="let article of articles">
-        <fa-icon class="fa-file-lines" [icon]="faFileLines"></fa-icon>
-        <p (click)="goToArticle(article.id)">{{ article.title }}</p>
-    </div>
+  <div class="article-container" *ngFor="let article of articles"
+    (click)="goToArticle(article.id)">
+    <fa-icon class="fa-file-lines" [icon]="faFileLines"></fa-icon>
+    <p>{{ article.title }}</p>
+  </div>
 </div>

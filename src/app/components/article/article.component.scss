@@ -1,28 +1,28 @@
 .article {
-    max-width: 1000px;
-    padding: 2rem;
-    margin: 0 auto;
+  max-width: 1000px;
+  padding: 2rem;
+  margin: 0 auto;
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__author {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 1rem;
+  }
+
+  &__section {
+    margin-top: 32px;
 
     &__title {
-        font-weight: 700;
-        text-align: center;
+      font-size: 22px;
+      line-height: 28px;
     }
 
-    &__author {
-        margin-top: 1rem;
+    &__paragraph {
+      margin-top: 8px;
     }
-
-    &__section {
-        &__title {
-            margin-top: 16px;
-            font-size: 22px;
-            line-height: 28px;
-        }
-
-        &__paragraph {
-            margin-top: 10px;
-            font-size: 20px;
-            line-height: 32px;
-        }
-    }
+  }
 }
