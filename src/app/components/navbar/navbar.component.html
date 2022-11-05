@@ -5,6 +5,10 @@
         <p>About</p>
         <p>Help</p>
     </div>
-    <button class="navbar__signin" *ngIf="false">Sign in</button>
-    <p *ngIf="true">Nume utilizator</p>
+    <button class="navbar__signin" *ngIf="true">
+        <span>Sign in</span> 
+        <fa-icon class="fa-arrow-right" [icon]="faArrowRight"></fa-icon>
+    </button>
+    <p *ngIf="false">Nume utilizator</p>
+
 </div>
