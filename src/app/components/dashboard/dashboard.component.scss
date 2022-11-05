@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+:host {
+  display: block;
+  padding: $page-padding;
+}
+
+.dashboard-title {
+	margin-bottom: 16px;
+}

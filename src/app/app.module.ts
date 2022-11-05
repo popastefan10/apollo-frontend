@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalMaterialModule } from './shared/global-material/global-material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    DashboardComponent,
     ArticlesComponent
   ],
   imports: [
