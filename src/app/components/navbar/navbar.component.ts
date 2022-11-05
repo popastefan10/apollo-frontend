@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,9 +10,12 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent implements OnInit {
   faArrowRight = faArrowRight;
 
-  constructor() { }
+  constructor(private readonly router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToDashboard() {
+    this.router.navigate(['dashboard']);
+  }
 }
