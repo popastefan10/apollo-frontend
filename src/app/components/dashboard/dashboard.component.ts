@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { topics } from 'src/app/mock-data/topics';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,13 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public topics: string[] = [
-    'Operating Systems',
-    'Probabilities',
-    'Machine Learning',
-    'Cloud Computing',
-    'Blockchain'
-  ];
+  public topics: string[] = topics
 
   constructor() { }
 
