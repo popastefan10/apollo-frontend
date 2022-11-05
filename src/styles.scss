@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use "typography" as *;
+@use "button" as *;
+@use "colors" as *;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -18,4 +20,17 @@ p {
 
 mat-expansion-panel.with-margin {
 	margin: 16px 0;
+}
+
+button.icon-button {
+  @include icon-button;
+
+  &.yellow-button {
+    background-color: $dark-amber;
+    color: $white;
+
+    fa-icon {
+      color: $white;
+    }
+  }
 }

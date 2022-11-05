@@ -1,5 +1,11 @@
 <div class="article">
-  <h1 class="article__title">{{ article.title }}<span class="article__author"> by {{ article.author }}</span></h1>
+  <div class="article__header">
+    <h1 class="article-title">{{ article.title }}<span class="article-author"> by {{ article.author }}</span></h1>
+    <button class="icon-button yellow-button" *ngIf="true">
+      <span>Assessment</span>
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </div>
   <div class="article__section" *ngFor="let section of article.sections">
     <h1 class="article__section__title">{{ section.title }}</h1>
     <p class="article__section__paragraph" *ngFor="let para of section.content">
