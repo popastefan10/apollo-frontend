@@ -1,0 +1,10 @@
+<div class="article">
+    <h1 class="article__title">{{ article.title }}</h1>
+    <p class="article__author">Author: {{ article.author }}</p>
+    <div class="article__section" *ngFor="let section of sections">
+        <h2 class="article__section__title">{{ section.title }}</h2>
+        <p class="article__section__paragraph" *ngFor="let para of section.content">
+            {{ para }}
+        </p>
+    </div>
+</div>

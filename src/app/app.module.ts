@@ -9,13 +9,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
