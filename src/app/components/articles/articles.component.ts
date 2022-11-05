@@ -18,7 +18,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   goToArticle(articleId: number) {
-    console.log('goToArticle', articleId);
     this.router.navigate(['article', articleId]);
   }
 }
