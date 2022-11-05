@@ -2,9 +2,10 @@
 	<h1>Main topics</h1>
 </div>
 <div class="topics-container">
-	<mat-expansion-panel *ngFor="let topic of topics">
+	<mat-expansion-panel *ngFor="let topic of topics" class="with-margin">
 		<mat-expansion-panel-header>
 			{{ topic }}
 		</mat-expansion-panel-header>
+		<app-articles></app-articles>
 	</mat-expansion-panel>
 </div>
