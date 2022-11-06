@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { topics } from 'src/app/mock-data/topics';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -8,6 +9,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  faPlus = faPlus;
+
   public topics: string[] = topics
 
   constructor(private readonly apiService: ApiService) { }
