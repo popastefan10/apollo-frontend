@@ -3,3 +3,21 @@
   line-height: 32px;
   font-weight: 300;
 }
+
+@mixin h2 {
+  font-size: 43px !important;
+  line-height: 60px !important;
+  font-weight: 400 !important;
+}
+
+@mixin h3 {
+  font-size: 32px !important;
+  line-height: 45px !important;
+  font-weight: 400 !important;
+}
+
+@mixin h4 {
+  font-size: 21px !important;
+  line-height: 30px !important;
+  font-weight: 400 !important;
+}
