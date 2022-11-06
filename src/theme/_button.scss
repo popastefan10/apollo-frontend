@@ -49,5 +49,10 @@
   button.deep-purple-full {
     background-color: $deep-purple;
     color: $white;
+
+    &.disabled {
+      background-color: $light-deep-purple;
+      cursor: default;
+    }
   }
 }

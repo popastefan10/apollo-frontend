@@ -10,11 +10,14 @@
     rows="7"
     [formControl]="answerControl"></textarea>
 </div>
-<div class="actions-container">
+<div class="actions-container" *ngIf="{ canSave: canSave$ | async } as data">
   <button class="rounded light-gray">
     <span>Cancel</span>
   </button>
-  <button class="rounded deep-purple-full">
+  <button class="rounded deep-purple-full"
+    [class.disabled]="!data.canSave"
+    matTooltip="Question and answer cannot be empty"
+    [matTooltipDisabled]="data.canSave">
     <span>Save</span>
   </button>
 </div>
