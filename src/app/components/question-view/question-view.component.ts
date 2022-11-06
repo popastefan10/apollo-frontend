@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   combineLatest,
@@ -10,13 +18,14 @@ import {
   Subject,
   tap,
 } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-question-view',
   templateUrl: './question-view.component.html',
   styleUrls: ['./question-view.component.scss'],
 })
-export class QuestionViewComponent implements OnInit {
+export class QuestionViewComponent implements OnInit, OnChanges {
   @Output() public readonly updateQuestion: EventEmitter<string> =
     new EventEmitter();
   @Input() public questionId: number = 0;
@@ -41,9 +50,24 @@ export class QuestionViewComponent implements OnInit {
     )
   );
 
-  constructor() {}
+  constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('questionId' in changes) {
+      const questionId = changes['questionId'].currentValue;
+      console.log(questionId);
+
+      this.apiService.getQuestion(questionId).pipe(
+        filter((q) => !!q),
+        tap((q: { question: string; answer: string }) => {
+          this.questionControl.setValue(q.question);
+          this.answerControl.setValue(q.answer);
+        })
+      ).subscribe();
+    }
+  }
 
   public save(): void {
     if (

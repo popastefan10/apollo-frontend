@@ -35,4 +35,8 @@ export class ApiService {
   public getQuestions(articleId: number): Observable<any> {
     return this.http.get<any>(`/api/questions/${articleId}`);
   }
+
+  public getQuestion(questionId: number): Observable<any> {
+    return this.http.get<any>(`/api/question/${questionId}`);
+  }
 }
