@@ -1,12 +1,20 @@
 <div class="question-editor">
   <h4>Enter question text</h4>
-  <textarea cols="100"
+  <textarea
     rows="7"
     [formControl]="questionControl"></textarea>
 </div>
 <div class="answer-editor">
   <h4>Enter answer text</h4>
-  <textarea cols="100"
+  <textarea
     rows="7"
     [formControl]="answerControl"></textarea>
+</div>
+<div class="actions-container">
+  <button class="rounded light-gray">
+    <span>Cancel</span>
+  </button>
+  <button class="rounded deep-purple-full">
+    <span>Save</span>
+  </button>
 </div>

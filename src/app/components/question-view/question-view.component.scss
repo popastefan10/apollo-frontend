@@ -1,4 +1,18 @@
 .question-editor,
 .answer-editor {
   margin-top: 16px;
+
+  textarea {
+    width: 100%;
+  }
+}
+
+.answer-editor {
+  margin-bottom: 16px;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

@@ -34,15 +34,4 @@ mat-expansion-panel.with-margin {
 	margin: 16px 0;
 }
 
-button.icon-button {
-  @include icon-button;
-
-  &.yellow-button {
-    background-color: $dark-amber;
-    color: $white;
-
-    fa-icon {
-      color: $white;
-    }
-  }
-}
+@include button;
