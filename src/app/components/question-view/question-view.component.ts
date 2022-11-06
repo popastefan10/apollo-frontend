@@ -59,7 +59,6 @@ export class QuestionViewComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if ('questionId' in changes) {
       const questionId = changes['questionId'].currentValue;
-      console.log(questionId);
 
       this.apiService
         .getQuestion(questionId)

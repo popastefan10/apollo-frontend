@@ -33,6 +33,8 @@ export class AssessmentViewComponent implements OnInit {
   // questions: Question[][] = [];
   questions: any[][] = [];
 
+  private firstTimeLoading: boolean = true;
+
   public activeQuestion: any | undefined = this.questions[0]?.[0];
 
   private activeQuestionIdSubject = new BehaviorSubject(0);
@@ -95,7 +97,13 @@ export class AssessmentViewComponent implements OnInit {
             })
           )
         ),
-        tap((questions) => (this.questions = questions as any[][]))
+        tap((questions) => (this.questions = questions as any[][])),
+        tap((questions) => {
+          if (this.firstTimeLoading) {
+            this.activeQuestionIdSubject.next(questions[0]?.[0]?.id);
+          }
+          this.firstTimeLoading = false;
+        })
       )
       .subscribe();
   }

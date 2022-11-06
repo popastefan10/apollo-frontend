@@ -15,9 +15,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private readonly apiService: ApiService) { }
 
-  ngOnInit(): void {
-    // this.apiService.login().subscribe((x) => console.log('login', x));
-    this.apiService.getRoot().subscribe(() => console.log('root'));
-  }
+  ngOnInit(): void {}
 
 }
