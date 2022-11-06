@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../components/models/user.model';
 import { QToDTO } from '../components/models/question.model';
 
@@ -22,7 +22,17 @@ export class ApiService {
   }
 
   public sendQuestions(questions: any[][], articleId: number) {
-    const questionsDTO = questions.map((questionSet: any[]) => questionSet.map((q: any) => QToDTO(q, 1)));
-    return this.http.post('api/questions/new', { article_id: articleId, questions: questionsDTO });
+    console.log('sendQuestions', questions);
+    const questionsDTO = questions.map((questionSet: any[]) =>
+      questionSet.map((q: any) => QToDTO(q, 1))
+    );
+    return this.http.post('api/questions/new', {
+      article_id: articleId,
+      questions: questionsDTO,
+    });
+  }
+
+  public getQuestions(articleId: number): Observable<any> {
+    return this.http.get<any>(`/api/questions/${articleId}`);
   }
 }

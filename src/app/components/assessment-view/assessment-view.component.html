@@ -16,8 +16,8 @@
           [active]="question.id === data.activeQuestionId"
           [questionTitle]="
             question.id === data.activeQuestionId
-              ? activeQuestion?.title || question.title
-              : question.title
+              ? activeQuestion?.title || question.question
+              : question.question
           "
           [isHelper]="i > 0"
           (click)="selectQuestion(question.id)"

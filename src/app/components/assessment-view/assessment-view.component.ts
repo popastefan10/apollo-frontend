@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 // import { Question } from '../models/question.model';
 
@@ -74,6 +74,29 @@ export class AssessmentViewComponent implements OnInit {
       this.activeQuestionIdSubject.next(this.questions[0][0].id ?? 0);
       this.activeQuestion = this.questions[0][0];
     }
+
+    const articleId = this.activatedRoute.snapshot.params['articleId'];
+    this.getQuestions(articleId);
+  }
+
+  public getQuestions(articleId: number): void {
+    this.apiService
+      .getQuestions(articleId)
+      .pipe(
+        map((qs) => qs.questions),
+        map((qs: any[][]) =>
+          qs.map((qSet: any[]) =>
+            qSet.map((q) => {
+              return {
+                id: q.question_id,
+                question: q.question,
+              };
+            })
+          )
+        ),
+        tap((questions) => (this.questions = questions as any[][])),
+      )
+      .subscribe();
   }
 
   selectQuestion(questionId: number) {
@@ -129,7 +152,9 @@ export class AssessmentViewComponent implements OnInit {
         if (this.questions[i][j].id === this.activeQuestionIdSubject.value) {
           this.questions[i][j].title = q;
           this.questions[i][j].id = null;
+          console.log('before sendQuestions', this.questions);
           this.apiService.sendQuestions(this.questions, articleId).subscribe();
+          setTimeout(() => this.getQuestions(articleId), 500);
 
           return;
         }
