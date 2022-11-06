@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { QuestionViewComponent } from './components/question-view/question-view.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AssessmentViewComponent } from './components/assessment-view/assessment-view.component';
 
 @NgModule({
@@ -19,6 +21,7 @@ import { AssessmentViewComponent } from './components/assessment-view/assessment
     DashboardComponent,
     ArticlesComponent,
     ArticleComponent,
+    QuestionViewComponent,
     AssessmentViewComponent
   ],
   imports: [
@@ -26,7 +29,9 @@ import { AssessmentViewComponent } from './components/assessment-view/assessment
     AppRoutingModule,
     BrowserAnimationsModule,
     GlobalMaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

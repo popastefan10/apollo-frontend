@@ -1,19 +1,58 @@
 @use "colors" as *;
 
 @mixin icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1.25rem;
-  border: none;
   border-radius: 100px;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  font-size: 1.25rem;
-  cursor: pointer;
 
   fa-icon {
     margin-left: .5rem;
     color: $deep-purple;
+  }
+}
+
+@mixin button {
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  button.rounded {
+    border-radius: 100px;
+    width: 120px;
+  }
+
+  button.icon-button {
+    @include icon-button;
+  
+    &.yellow-button {
+      background-color: $dark-amber;
+      color: $white;
+  
+      fa-icon {
+        color: $white;
+      }
+    }
+  }
+
+  button.light-gray {
+    background-color: $white;
+    border: 2px solid $light-gray;
+    color: $gray;
+  }
+
+  button.deep-purple-full {
+    background-color: $deep-purple;
+    color: $white;
+
+    &.disabled {
+      background-color: $light-deep-purple;
+      cursor: default;
+    }
   }
 }

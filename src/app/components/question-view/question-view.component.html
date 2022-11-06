@@ -1,0 +1,23 @@
+<div class="question-editor">
+  <h4>Enter question text</h4>
+  <textarea
+    rows="7"
+    [formControl]="questionControl"></textarea>
+</div>
+<div class="answer-editor">
+  <h4>Enter answer text</h4>
+  <textarea
+    rows="7"
+    [formControl]="answerControl"></textarea>
+</div>
+<div class="actions-container" *ngIf="{ canSave: canSave$ | async } as data">
+  <button class="rounded light-gray">
+    <span>Cancel</span>
+  </button>
+  <button class="rounded deep-purple-full"
+    [class.disabled]="!data.canSave"
+    matTooltip="Question and answer cannot be empty"
+    [matTooltipDisabled]="data.canSave">
+    <span>Save</span>
+  </button>
+</div>

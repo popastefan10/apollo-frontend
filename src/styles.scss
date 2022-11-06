@@ -3,6 +3,7 @@
 @use "typography" as *;
 @use "button" as *;
 @use "colors" as *;
+@use "textarea" as *;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -19,19 +20,22 @@ p {
   margin-bottom: 0 !important;
 }
 
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+h4 {
+  @include h4;
+}
+
 mat-expansion-panel.with-margin {
 	margin: 16px 0;
 }
 
-button.icon-button {
-  @include icon-button;
+@include button;
 
-  &.yellow-button {
-    background-color: $dark-amber;
-    color: $white;
-
-    fa-icon {
-      color: $white;
-    }
-  }
-}
+@include textarea;
