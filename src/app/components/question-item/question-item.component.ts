@@ -11,7 +11,7 @@ import { faQuestionCircle as questionCircleRegular } from '@fortawesome/free-reg
 export class QuestionItemComponent implements OnInit {
   @Output() public addHelper: EventEmitter<void> = new EventEmitter();
   @Output() public deleteQuestion: EventEmitter<void> = new EventEmitter();
-  @Input() public question?: Question;
+  @Input() public questionTitle?: string;
   @Input() public isHelper?: boolean;
   @Input() public active?: boolean;
 

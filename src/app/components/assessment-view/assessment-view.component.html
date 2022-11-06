@@ -1,4 +1,4 @@
-<div class="assessment-container">
+<div class="assessment-container" *ngIf="{ activeQuestionId: activeQuestionId$ | async } as data">
   <div class="assessment-container__left">
     <div class="assessment-container__left__header">
       <h3>Questions</h3>
@@ -9,8 +9,8 @@
     <div class="assessment-container__left__questions">
       <div class="question-container" *ngFor="let questionSet of questions">
         <app-question-item *ngFor="let question of questionSet; index as i"
-          [active]="question.id === activeQuestionId"
-          [question]="question"
+          [active]="question.id === data.activeQuestionId"
+          [questionTitle]="question.id === data.activeQuestionId ? (activeQuestion?.title || question.title) : question.title"
           [isHelper]="i > 0"
           (click)="selectQuestion(question.id)"
           (addHelper)="addHelperQuestion(question.id)"
@@ -19,6 +19,6 @@
     </div>
   </div>
   <div class="assessment-container__right">
-    <app-question-view [questionId]="12"></app-question-view>
+    <app-question-view [questionId]="data.activeQuestionId || 0" (updateQuestion)="updateSelectedQuestion($event)"></app-question-view>
   </div>
 </div>

@@ -20,7 +20,8 @@
   <button class="rounded deep-purple-full"
     [class.disabled]="!data.canSave"
     matTooltip="Question and answer cannot be empty"
-    [matTooltipDisabled]="data.canSave">
+    [matTooltipDisabled]="data.canSave"
+    (click)="save()">
     <span>Save</span>
   </button>
 </div>

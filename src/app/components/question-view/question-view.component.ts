@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { combineLatest, map, Observable, startWith, tap } from 'rxjs';
+import { combineLatest, first, map, Observable, startWith, Subject, tap } from 'rxjs';
 
 @Component({
   selector: 'app-question-view',
@@ -8,7 +8,8 @@ import { combineLatest, map, Observable, startWith, tap } from 'rxjs';
   styleUrls: ['./question-view.component.scss'],
 })
 export class QuestionViewComponent implements OnInit {
-  @Input() public questionId?: number;
+  @Output() public readonly updateQuestion: EventEmitter<string> = new EventEmitter();
+  @Input() public questionId: number = 0;
 
   public readonly questionControl = new FormControl('');
 
@@ -32,7 +33,9 @@ export class QuestionViewComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.canSave$.subscribe((x) => console.log('canSave', x));
+  ngOnInit(): void {}
+
+  public save(): void {
+    this.updateQuestion.emit(this.questionControl.value ?? '');
   }
 }
