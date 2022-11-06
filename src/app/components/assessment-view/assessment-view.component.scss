@@ -19,10 +19,14 @@
         width: 32px;
         height: 32px;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         background-color: $dark-amber;
         color: $white;
         cursor: pointer;
+
+        fa-icon {
+          font-size: 16px;
+        }
       }
 
       .fa-plus {
