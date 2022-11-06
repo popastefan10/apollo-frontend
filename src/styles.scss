@@ -3,6 +3,7 @@
 @use "typography" as *;
 @use "button" as *;
 @use "colors" as *;
+@use "textarea" as *;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -35,3 +36,5 @@ mat-expansion-panel.with-margin {
 }
 
 @include button;
+
+@include textarea;
