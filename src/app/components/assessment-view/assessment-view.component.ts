@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
 import { Question } from '../models/question.model';
 
 @Component({
@@ -34,7 +34,8 @@ export class AssessmentViewComponent implements OnInit {
   private activeQuestionIdSubject: BehaviorSubject<number> =
     new BehaviorSubject(0);
 
-  public activeQuestionId$: Observable<number> = this.activeQuestionIdSubject;
+  public activeQuestionId$: Observable<number> =
+    this.activeQuestionIdSubject.pipe(filter((id) => !!id));
 
   constructor() {}
 
@@ -114,7 +115,6 @@ export class AssessmentViewComponent implements OnInit {
   }
 
   public updateSelectedQuestion(q: string): void {
-    if (!!this.activeQuestion)
-      this.activeQuestion.title = q;
+    if (!!this.activeQuestion) this.activeQuestion.title = q;
   }
 }

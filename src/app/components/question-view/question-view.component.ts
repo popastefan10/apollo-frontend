@@ -9,7 +9,7 @@ import { combineLatest, first, map, Observable, startWith, Subject, tap } from '
 })
 export class QuestionViewComponent implements OnInit {
   @Output() public readonly updateQuestion: EventEmitter<string> = new EventEmitter();
-  @Input() public questionId?: number;
+  @Input() public questionId: number = 0;
 
   public readonly questionControl = new FormControl('');
 

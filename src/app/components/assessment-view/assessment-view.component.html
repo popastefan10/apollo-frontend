@@ -19,6 +19,6 @@
     </div>
   </div>
   <div class="assessment-container__right">
-    <app-question-view [questionId]="12" (updateQuestion)="updateSelectedQuestion($event)"></app-question-view>
+    <app-question-view [questionId]="data.activeQuestionId || 0" (updateQuestion)="updateSelectedQuestion($event)"></app-question-view>
   </div>
 </div>
