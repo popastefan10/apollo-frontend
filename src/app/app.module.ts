@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AssessmentViewComponent } from './components/assessment-view/assessment-view.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionItemComponent } from './components/question-item/question-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { QuestionItemComponent } from './components/question-item/question-item.
     GlobalMaterialModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
