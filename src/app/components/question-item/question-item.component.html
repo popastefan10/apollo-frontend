@@ -4,7 +4,7 @@
 >
   <div class="question-left">
     <div class="question__number">
-      {{ question?.id }}
+      <fa-icon [icon]="isHelper ? questionCircleRegular : questionCircleSolid"></fa-icon>
     </div>
     <p class="question__title">{{ question?.title }}</p>
   </div>

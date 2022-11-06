@@ -28,8 +28,12 @@
     width: 24px;
     height: 24px;
     border-radius: 4px;
-    background-color: $light-deep-purple;
+    // background-color: $light-deep-purple;
     color: #000;
+
+    fa-icon {
+      color: $deep-purple;
+    }
   }
 
   &__title {
