@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { QuestionViewComponent } from './components/question-view/question-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ArticleComponent } from './components/article/article.component';
     NavbarComponent,
     DashboardComponent,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    QuestionViewComponent
   ],
   imports: [
     BrowserModule,
