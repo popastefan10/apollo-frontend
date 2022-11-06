@@ -31,54 +31,7 @@
     }
 
     &__questions {
-      .question {
-        padding: 8px 16px;
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-
-        &-left {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-
-        &__title,
-        &__number {
-          font-size: 14px;
-        }
-
-        &__number {
-          display: flex;
-          flex-shrink: 0;
-          align-items: center;
-          justify-content: center;
-          width: 24px;
-          height: 24px;
-          border-radius: 4px;
-          background-color: $light-deep-purple;
-          color: #000;
-        }
-      
-        &__title {
-          margin-left: 6px;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-
-        &.active {
-          background-color: #e0e0e0;
-        }
-
-        &__options {
-          padding: 4px;
-          cursor: pointer;
-        }
-      }
+      padding-right: 16px;
     }
   }
 

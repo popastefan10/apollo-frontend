@@ -14,6 +14,7 @@ import { QuestionViewComponent } from './components/question-view/question-view.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AssessmentViewComponent } from './components/assessment-view/assessment-view.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { QuestionItemComponent } from './components/question-item/question-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     ArticleComponent,
     QuestionViewComponent,
     AssessmentViewComponent,
-    SignInComponent
+    SignInComponent,
+    QuestionItemComponent
   ],
   imports: [
     BrowserModule,

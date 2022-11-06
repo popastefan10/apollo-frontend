@@ -7,30 +7,18 @@
       </button>
     </div>
     <div class="assessment-container__left__questions">
-      <div 
-        class="question" 
-        *ngFor="let question of questions" 
-        [ngClass]="{'active': question.active}"
-        (click)="selectQuestion(question.id)"
-      >
-        <div class="question-left">
-          <div class="question__number">
-            {{ question.id }}
-          </div>
-          <p class="question__title">{{ question.title }}</p>
-        </div>
-        <div class="question__options" mat-button [matMenuTriggerFor]="menu">
-          <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
-          </fa-icon>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="addHelperQuestion(question.id)">Add helper question</button>
-            <button mat-menu-item (click)="deleteQuestion(question.id)">Delete question</button>
-          </mat-menu>
-        </div>
+      <div class="question-container" *ngFor="let questionSet of questions">
+        <app-question-item *ngFor="let question of questionSet; index as i"
+          [active]="question.id === activeQuestionId"
+          [question]="question"
+          [isHelper]="i > 0"
+          (click)="selectQuestion(question.id)"
+          (addHelper)="addHelperQuestion(question.id)"
+          (deleteQuestion)="deleteQuestion(question.id)"></app-question-item>
       </div>
     </div>
   </div>
   <div class="assessment-container__right">
-    <p>trial</p>
+    <app-question-view [questionId]="12"></app-question-view>
   </div>
 </div>
