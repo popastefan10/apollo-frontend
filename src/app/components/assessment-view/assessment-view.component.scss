@@ -1,8 +1,10 @@
 @use "colors" as *;
+@use "variables" as *;
 
 .assessment-container {
   display: flex;
   padding: .5rem 2rem;
+  height: calc(100% - #{$header-height});
 
   &__left {
     width: 275px;

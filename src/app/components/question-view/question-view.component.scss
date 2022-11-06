@@ -1,10 +1,15 @@
-.view-title {
-  padding: 16px;
+@use "variables" as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $page-padding;
 }
 
 .question-editor,
 .answer-editor {
-  padding: 16px;
+  margin-top: 16px;
 
   textarea {
     width: 100%;
@@ -16,6 +21,7 @@
 }
 
 .actions-container {
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
