@@ -6,7 +6,7 @@
     <div class="question__number">
       <fa-icon [icon]="isHelper ? questionCircleRegular : questionCircleSolid"></fa-icon>
     </div>
-    <p class="question__title">{{ question?.title }}</p>
+    <p class="question__title">{{ questionTitle }}</p>
   </div>
   <div class="question__options" mat-button [matMenuTriggerFor]="menu">
     <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
