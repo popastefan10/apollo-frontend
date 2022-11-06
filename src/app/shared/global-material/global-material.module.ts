@@ -11,7 +11,8 @@ const MATERIAL_MODULES = [
   MatExpansionModule,
   MatMenuModule,
   MatFormFieldModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

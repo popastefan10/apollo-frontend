@@ -18,4 +18,8 @@ export class NavbarComponent implements OnInit {
   goToDashboard() {
     this.router.navigate(['dashboard']);
   }
+  
+  goToSignIn() {
+    this.router.navigate(['signin']);
+  }
 }

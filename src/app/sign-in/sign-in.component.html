@@ -1,0 +1,19 @@
+<div class="form-container">
+  <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="login-input">
+      <label for="username">Name</label>
+      <input type="text" class="form-control" id="usernname"
+             required
+             [(ngModel)]="signInModel.username" name="username">
+    </div>
+  
+    <div class="login-input">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"
+             required
+             [(ngModel)]="signInModel.password" name="password">
+    </div>
+  
+    <button type="submit" class="icon-button" [disabled]="!loginForm.form.valid">Sign in</button>
+  </form>
+</div>

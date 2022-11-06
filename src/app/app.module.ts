@@ -13,6 +13,7 @@ import { ArticleComponent } from './components/article/article.component';
 import { QuestionViewComponent } from './components/question-view/question-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AssessmentViewComponent } from './components/assessment-view/assessment-view.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AssessmentViewComponent } from './components/assessment-view/assessment
     ArticlesComponent,
     ArticleComponent,
     QuestionViewComponent,
-    AssessmentViewComponent
+    AssessmentViewComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
