@@ -64,6 +64,12 @@ export class QuestionViewComponent implements OnInit, OnChanges {
       this.apiService
         .getQuestion(questionId)
         .pipe(
+          tap((q) => {
+            if (!q) {
+              this.questionControl.setValue('');
+              this.answerControl.setValue('');
+            }
+          }),
           filter((q) => !!q),
           tap((q: { question: string; answer: string }) => {
             this.questionControl.setValue(q.question);
