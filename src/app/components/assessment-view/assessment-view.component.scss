@@ -1,0 +1,89 @@
+@use "colors" as *;
+
+.assessment-container {
+  display: flex;
+  padding: .5rem 2rem;
+
+  &__left {
+    width: 275px;
+    background-color: #fff;
+    border-right: 1px solid #e3e3e3;
+
+    &__header {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 4px;
+        background-color: $dark-amber;
+        color: $white;
+        cursor: pointer;
+      }
+
+      .fa-plus {
+        font-size: 10px;
+      }
+    }
+
+    &__questions {
+      .question {
+        padding: 8px 16px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+        &-left {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        &__title,
+        &__number {
+          font-size: 14px;
+        }
+
+        &__number {
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          border-radius: 4px;
+          background-color: $light-deep-purple;
+          color: #000;
+        }
+      
+        &__title {
+          margin-left: 6px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        &.active {
+          background-color: #e0e0e0;
+        }
+
+        &__options {
+          padding: 4px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__right {
+    flex-grow: 1;
+    background-color: #fff;
+  }
+}

@@ -1,7 +1,7 @@
 <div class="article">
   <div class="article__header">
     <h1 class="article-title">{{ article.title }}<span class="article-author"> by {{ article.author }}</span></h1>
-    <button class="icon-button yellow-button" *ngIf="true">
+    <button class="icon-button yellow-button" *ngIf="true" (click)="goToAssessment(article.id)">
       <span>Assessment</span>
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
