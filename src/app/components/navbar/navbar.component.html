@@ -5,9 +5,12 @@
         <p>About</p>
         <p>Help</p>
     </div>
-    <button class="icon-button" *ngIf="true" (click)="goToSignIn()">
-        <span>Sign in</span> 
+    <button class="icon-button" *ngIf="!isSignedIn" (click)="goToSignIn()">
+        <span>Sign in</span>
         <fa-icon class="fa-arrow-right" [icon]="faArrowRight"></fa-icon>
+    </button>
+    <button class="icon-button" *ngIf="isSignedIn">
+      <span>{{username}}</span>
     </button>
     <p *ngIf="false">Nume utilizator</p>
 
