@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
-import { Question } from '../models/question.model';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
+// import { Question } from '../models/question.model';
 
 @Component({
   selector: 'app-assessment-view',
@@ -12,32 +14,36 @@ import { Question } from '../models/question.model';
 export class AssessmentViewComponent implements OnInit {
   faPlus = faPlus;
   faEllipsisVertical = faEllipsisVertical;
-  questions: Question[][] = [
-    [
-      {
-        id: 1,
-        title: 'What is the area of the earth given the fact that?',
-        active: false,
-      },
-    ],
-    [
-      {
-        id: 2,
-        title: 'What color is the sun?',
-        active: true,
-      },
-    ],
-  ];
+  // questions: Question[][] = [
+  //   [
+  //     {
+  //       id: 1,
+  //       title: 'What is the area of the earth given the fact that?',
+  //       active: false,
+  //     },
+  //   ],
+  //   [
+  //     {
+  //       id: 2,
+  //       title: 'What color is the sun?',
+  //       active: true,
+  //     },
+  //   ],
+  // ];
+  // questions: Question[][] = [];
+  questions: any[][] = [];
 
-  public activeQuestion: Question | undefined = this.questions[0][0];
+  public activeQuestion: any | undefined = this.questions[0]?.[0];
 
-  private activeQuestionIdSubject: BehaviorSubject<number> =
-    new BehaviorSubject(0);
+  private activeQuestionIdSubject = new BehaviorSubject(0);
 
   public activeQuestionId$: Observable<number> =
     this.activeQuestionIdSubject.pipe(filter((id) => !!id));
 
-  constructor() {}
+  constructor(
+    private readonly apiService: ApiService,
+    private readonly activatedRoute: ActivatedRoute
+  ) {}
 
   private nextId(): number {
     return (
@@ -45,16 +51,16 @@ export class AssessmentViewComponent implements OnInit {
         (prev, crt) =>
           Math.max(
             prev,
-            crt.reduce((prev, crt) => Math.max(prev, crt.id), 0)
+            crt.reduce((prev, crt) => Math.max(prev, crt.id ?? 0), 0)
           ),
         0
       ) + 1
     );
   }
 
-  private findQuestion(questionId: number): Question | undefined {
+  private findQuestion(questionId: number): any | undefined {
     for (let i = 0; i < this.questions.length; i++) {
-      const maybeQ: Question | undefined = this.questions[i].find(
+      const maybeQ: any | undefined = this.questions[i].find(
         (q) => q.id === questionId
       );
       if (!!maybeQ) return maybeQ;
@@ -65,7 +71,7 @@ export class AssessmentViewComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.questions.length > 0) {
-      this.activeQuestionIdSubject.next(this.questions[0][0].id);
+      this.activeQuestionIdSubject.next(this.questions[0][0].id ?? 0);
       this.activeQuestion = this.questions[0][0];
     }
   }
@@ -96,7 +102,7 @@ export class AssessmentViewComponent implements OnInit {
     const newId = this.nextId();
     this.activeQuestionIdSubject.next(newId);
 
-    const newHelperQuestion: Question = {
+    const newHelperQuestion: any = {
       id: newId,
       title: 'new helper',
       active: true,
@@ -115,6 +121,17 @@ export class AssessmentViewComponent implements OnInit {
   }
 
   public updateSelectedQuestion(q: string): void {
+    const articleId = this.activatedRoute.snapshot.params['articleId'];
     if (!!this.activeQuestion) this.activeQuestion.title = q;
+
+    for (let i = 0; i < this.questions.length; i++)
+      for (let j = 0; j < this.questions[i].length; j++)
+        if (this.questions[i][j].id === this.activeQuestionIdSubject.value) {
+          this.questions[i][j].title = q;
+          this.questions[i][j].id = null;
+          this.apiService.sendQuestions(this.questions, articleId).subscribe();
+
+          return;
+        }
   }
 }

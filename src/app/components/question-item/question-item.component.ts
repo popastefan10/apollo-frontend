@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Question } from '../models/question.model';
 import { faEllipsisVertical, faQuestionCircle as questionCircleSolid } from '@fortawesome/free-solid-svg-icons';
 import { faQuestionCircle as questionCircleRegular } from '@fortawesome/free-regular-svg-icons'
 
