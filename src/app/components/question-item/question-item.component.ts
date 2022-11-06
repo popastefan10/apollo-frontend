@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {
-  HelperQuestion,
-  Question,
-} from '../assessment-view/assessment-view.component';
+import { Question } from '../models/question.model';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,7 +11,7 @@ export class QuestionItemComponent implements OnInit {
   @Output() public addHelper: EventEmitter<void> = new EventEmitter();
   @Output() public deleteQuestion: EventEmitter<void> = new EventEmitter();
   @Input() public question?: Question;
-  @Input() public helperQuestion?: HelperQuestion;
+  @Input() public isHelper?: boolean;
   @Input() public active?: boolean;
 
   public readonly faEllipsisVertical = faEllipsisVertical;

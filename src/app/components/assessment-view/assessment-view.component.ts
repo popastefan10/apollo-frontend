@@ -1,19 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { Question } from '../models/question.model';
 
-export interface Question {
-  id: number;
-  title: string;
-  active: boolean;
-  helperQuestions: HelperQuestion[];
-}
+// export interface Question {
+//   id: number;
+//   title: string;
+//   active: boolean;
+//   helperQuestions: HelperQuestion[];
+// }
 
-export interface HelperQuestion {
-  id: number;
-  title: string;
-  active: boolean;
-}
+// export interface HelperQuestion {
+//   id: number;
+//   title: string;
+//   active: boolean;
+// }
 
 @Component({
   selector: 'app-assessment-view',
@@ -23,19 +24,21 @@ export interface HelperQuestion {
 export class AssessmentViewComponent implements OnInit {
   faPlus = faPlus;
   faEllipsisVertical = faEllipsisVertical;
-  questions: Question[] = [
-    {
-      id: 1,
-      title: 'What is the area of the earth given the fact that?',
-      active: false,
-      helperQuestions: [],
-    },
-    {
-      id: 2,
-      title: 'What color is the sun?',
-      active: true,
-      helperQuestions: [],
-    },
+  questions: Question[][] = [
+    [
+      {
+        id: 1,
+        title: 'What is the area of the earth given the fact that?',
+        active: false,
+      },
+    ],
+    [
+      {
+        id: 2,
+        title: 'What color is the sun?',
+        active: true,
+      },
+    ],
   ];
 
   public activeQuestionId?: number;
@@ -48,8 +51,7 @@ export class AssessmentViewComponent implements OnInit {
         (prev, crt) =>
           Math.max(
             prev,
-            crt.id,
-            crt.helperQuestions.reduce((prev, crt) => Math.max(prev, crt.id), 0)
+            crt.reduce((prev, crt) => Math.max(prev, crt.id), 0)
           ),
         0
       ) + 1
@@ -58,7 +60,7 @@ export class AssessmentViewComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.questions.length > 0) {
-      this.activeQuestionId = this.questions[0].id;
+      this.activeQuestionId = this.questions[0][0].id;
     }
   }
 
@@ -79,29 +81,26 @@ export class AssessmentViewComponent implements OnInit {
       active: true,
       helperQuestions: [],
     };
-    this.questions.push(newQuestion);
+    this.questions.push([newQuestion]);
   }
 
   addHelperQuestion(questionId: number) {
     const newId = this.nextId();
 
-    const newHelperQuestion: HelperQuestion = {
+    const newHelperQuestion: Question = {
       id: newId,
       title: 'new helper',
       active: true,
     };
     this.questions
-      .find((q) => q.id === questionId)
-      ?.helperQuestions.push(newHelperQuestion);
+      .find((qset) => qset[0].id === questionId)
+      ?.push(newHelperQuestion);
   }
 
   deleteQuestion(questionId: number) {
-    this.questions = this.questions.filter(
-      (question) => question.id !== questionId
-    );
-
-    this.questions.forEach((q) =>
-      q.helperQuestions = q.helperQuestions.filter((helper) => helper.id !== questionId)
-    );
+    // console.log('del', questionId);
+    // this.questions.forEach((questionSet) =>
+    //   questionSet.splice(questionSet.findIndex((q) => q.id === questionId), 1)
+    // );
   }
 }
