@@ -1,0 +1,19 @@
+<div 
+  class="question" 
+  [ngClass]="{'active': active}"
+>
+  <div class="question-left">
+    <div class="question__number">
+      {{ question?.id || helperQuestion?.id }}
+    </div>
+    <p class="question__title">{{ question?.title || helperQuestion?.title }}</p>
+  </div>
+  <div class="question__options" mat-button [matMenuTriggerFor]="menu">
+    <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
+    </fa-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="addHelperQuestion()" *ngIf="!!question">Add helper question</button>
+      <button mat-menu-item (click)="deleteQ()">Delete question</button>
+    </mat-menu>
+  </div>
+</div>

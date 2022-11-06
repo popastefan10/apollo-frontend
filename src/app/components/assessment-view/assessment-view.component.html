@@ -7,26 +7,54 @@
       </button>
     </div>
     <div class="assessment-container__left__questions">
-      <div 
-        class="question" 
-        *ngFor="let question of questions" 
-        [ngClass]="{'active': question.active}"
-        (click)="selectQuestion(question.id)"
-      >
-        <div class="question-left">
-          <div class="question__number">
-            {{ question.id }}
+      <!-- <div class="question-container" *ngFor="let question of questions">
+        <div 
+          class="question" 
+          [ngClass]="{'active': question.id === activeQuestionId}"
+          (click)="selectQuestion(question.id)"
+        >
+          <div class="question-left">
+            <div class="question__number">
+              {{ question.id }}
+            </div>
+            <p class="question__title">{{ question.title }}</p>
           </div>
-          <p class="question__title">{{ question.title }}</p>
+          <div class="question__options" mat-button [matMenuTriggerFor]="menu">
+            <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
+            </fa-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="addHelperQuestion(question.id)">Add helper question</button>
+              <button mat-menu-item (click)="deleteQuestion(question.id)">Delete question</button>
+            </mat-menu>
+          </div>
         </div>
-        <div class="question__options" mat-button [matMenuTriggerFor]="menu">
-          <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
-          </fa-icon>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="addHelperQuestion(question.id)">Add helper question</button>
-            <button mat-menu-item (click)="deleteQuestion(question.id)">Delete question</button>
-          </mat-menu>
-        </div>
+        <div class="question-helper question" *ngFor="let helper of question.helperQuestions">
+          <div class="question-left">
+            <div class="question__number">
+              {{ helper.id }}
+            </div>
+            <p class="question__title">{{ helper.title }}</p>
+          </div>
+          <div class="question__options" mat-button [matMenuTriggerFor]="menu">
+            <fa-icon class="fa-ellipsis-vertical" [icon]="faEllipsisVertical">
+            </fa-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deleteQuestion(helper.id)">Delete question</button>
+            </mat-menu>
+          </div>
+        </div> -->
+        <div class="question-container" *ngFor="let question of questions">
+          <app-question-item [active]="question.id === activeQuestionId"
+            [question]="question" 
+            (click)="selectQuestion(question.id)"
+            (addHelper)="addHelperQuestion(question.id)"
+            (deleteQuestion)="deleteQuestion(question.id)"></app-question-item>
+          <app-question-item 
+            [active]="helper.id === activeQuestionId"
+            [helperQuestion]="helper"
+            *ngFor="let helper of question.helperQuestions"
+            (click)="selectQuestion(helper.id)"
+            (deleteQuestion)="deleteQuestion(helper.id)"></app-question-item>
       </div>
     </div>
   </div>
