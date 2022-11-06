@@ -90,11 +90,12 @@ export class AssessmentViewComponent implements OnInit {
               return {
                 id: q.question_id,
                 question: q.question,
+                answer: q.answer,
               };
             })
           )
         ),
-        tap((questions) => (this.questions = questions as any[][])),
+        tap((questions) => (this.questions = questions as any[][]))
       )
       .subscribe();
   }
@@ -113,10 +114,12 @@ export class AssessmentViewComponent implements OnInit {
     // add new question
     let newQuestion = {
       id: newId,
-      title: '',
+      question: '',
+      answer: '',
       active: true,
       helperQuestions: [],
     };
+
     this.activeQuestion = newQuestion;
     this.questions.push([newQuestion]);
   }
@@ -143,14 +146,15 @@ export class AssessmentViewComponent implements OnInit {
     // );
   }
 
-  public updateSelectedQuestion(q: string): void {
+  public updateSelectedQuestion(q: { question: string, answer: string }): void {
     const articleId = this.activatedRoute.snapshot.params['articleId'];
-    if (!!this.activeQuestion) this.activeQuestion.title = q;
+    if (!!this.activeQuestion) this.activeQuestion.title = q.question;
 
     for (let i = 0; i < this.questions.length; i++)
       for (let j = 0; j < this.questions[i].length; j++)
         if (this.questions[i][j].id === this.activeQuestionIdSubject.value) {
-          this.questions[i][j].title = q;
+          this.questions[i][j].question = q.question;
+          this.questions[i][j].answer = q.answer;
           this.questions[i][j].id = null;
           console.log('before sendQuestions', this.questions);
           this.apiService.sendQuestions(this.questions, articleId).subscribe();

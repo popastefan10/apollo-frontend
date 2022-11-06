@@ -26,8 +26,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./question-view.component.scss'],
 })
 export class QuestionViewComponent implements OnInit, OnChanges {
-  @Output() public readonly updateQuestion: EventEmitter<string> =
-    new EventEmitter();
+  @Output() public readonly updateQuestion: EventEmitter<{
+    question: string;
+    answer: string;
+  }> = new EventEmitter();
   @Input() public questionId: number = 0;
 
   public readonly questionControl = new FormControl('');
@@ -59,13 +61,16 @@ export class QuestionViewComponent implements OnInit, OnChanges {
       const questionId = changes['questionId'].currentValue;
       console.log(questionId);
 
-      this.apiService.getQuestion(questionId).pipe(
-        filter((q) => !!q),
-        tap((q: { question: string; answer: string }) => {
-          this.questionControl.setValue(q.question);
-          this.answerControl.setValue(q.answer);
-        })
-      ).subscribe();
+      this.apiService
+        .getQuestion(questionId)
+        .pipe(
+          filter((q) => !!q),
+          tap((q: { question: string; answer: string }) => {
+            this.questionControl.setValue(q.question);
+            this.answerControl.setValue(q.answer);
+          })
+        )
+        .subscribe();
     }
   }
 
@@ -74,7 +79,10 @@ export class QuestionViewComponent implements OnInit, OnChanges {
       this.questionControl.value?.length &&
       this.answerControl.value?.length
     ) {
-      this.updateQuestion.emit(this.questionControl.value ?? '');
+      this.updateQuestion.emit({
+        question: this.questionControl.value ?? '',
+        answer: this.answerControl.value ?? '',
+      });
     }
   }
 }

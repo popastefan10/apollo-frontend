@@ -15,7 +15,7 @@ export function QToDTO(q: any, articleId: number): QuestionDTO {
   return {
     question_id: q.id,
     question: q.title,
-    answer: 'addasnm sadmdnsmdsanmsda dm sams mdsadamsdasm d',
+    answer: q.answer,
     source_article_id: articleId
   }
 }
